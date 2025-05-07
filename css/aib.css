@@ -1,0 +1,116 @@
+/* custom-theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --color-background: #fbfbfd;
+  --color-foreground: #2e2e2e;
+  --color-heading: #632874;
+  --color-subheading: #c656a0;
+  --color-link: #c656a0;
+
+  --color-code-foreground: #2b2b2b;
+  --color-code-background: #dee3e9;
+  --color-code-comment: #717171;
+  --color-code-keyword: #b33434;
+  --color-code-string: #3555a5;
+  --color-code-function: #ffc66d;
+
+  --main-font: 'Inter', sans-serif;
+  --code-font: 'Fira Code', monospace;
+}
+
+/* General Slide Styling */
+section {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--main-font);
+  text-align: left;        
+  padding: 2em; 
+  line-height: 1.6;
+  font-size: 1.4em;
+}
+/*  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: flex-start; 
+  text-align: left;        
+  padding: 2em;            
+  min-height: 70vh;        
+  
+  position: relative;      
+*/
+
+/* Title and Headings (top-left aligned with padding) */
+h1, h2, h3 {
+  margin: 0;
+  padding: 0.3em 0;
+  padding-bottom: 1mm;
+    margin-bottom: 10mm;
+  
+}
+
+h1 {
+  font-size: 3em;
+  color: var(--color-heading);
+  /* padding-left: 1em; */
+  top: 0; /* Align at the top */
+}
+
+h2 {
+  font-size: 2.2em;
+  color: var(--color-subheading);
+  /* padding-left: 1em; */
+  top: 3em; /* Add spacing between title and content */
+}
+
+h3 {
+  font-size: 1.6em;
+  /* padding-left: 1em; */
+  top: 5em; /* Add spacing between title and content */
+}
+
+/* Paragraph and list spacing */
+p, ul, ol {
+  margin: 1em 0;
+  max-width: 80%;
+  padding-left: 1em; /* Added padding for better alignment with the titles */
+}
+
+/* Code styling */
+code {
+  font-family: var(--code-font);
+  font-size: 1.05em;
+  background: var(--color-code-background);
+  color: var(--color-code-foreground);
+  border-radius: 4px;
+  padding: 0.25em 0.5em;
+  /* padding: 1em;  */
+}
+
+pre code {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  line-height: 1.5;
+  text-align: left;
+  font-size: 1.05em;
+  border-radius: 8px;
+  max-width: 90%;
+}
+
+section {
+  padding-left: 2em;
+}
+
+/* Code syntax highlighting */
+.hljs-comment { color: var(--color-code-comment); font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-subst { color: var(--color-code-keyword); }
+.hljs-string, .hljs-title, .hljs-name { color: var(--color-code-string); }
+.hljs-function { color: var(--color-code-function); }
+
+/* Links */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
