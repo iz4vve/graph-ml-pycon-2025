@@ -224,15 +224,6 @@ print(f"Bias Rate due to 'sex': {bias_rate:.2%}")
 
 ---
 
-## Results: Bias Evaluation
-
-- On a sample of 200 individuals:
-  - ~**12–15%** changed prediction when `sex` attribute flipped
-  - Suggests measurable **gender sensitivity** in output
-- Could indicate model relies too much on gender-related features
-
----
-
 ## Explore Bias Across Attributes
 
 ```python
@@ -247,11 +238,11 @@ print(f"Bias Rate due to 'race': {race_bias:.2%}")
 
 ## More Insights
 
-- Bias due to race: ~8–10% depending on encoding
+<!-- - Bias due to race: ~8–10% depending on encoding -->
 - Counterfactual testing helps compare **sensitive feature effects**
 - Consider combining with **SHAP or LIME** for feature explanation
 
----
+
 
 ## Limitations of Counterfactuals
 
