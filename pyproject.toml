@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pycon2025"
+version = "0.1.0"
+description = ""
+authors = ["Pietro Mascolo <iz4vve@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+networkx = "^3.4.2"
+torch-geometric = "^2.6.1"
+torch = "^2.7.0"
+matplotlib = "^3.10.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

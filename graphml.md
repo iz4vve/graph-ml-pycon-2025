@@ -66,11 +66,11 @@ A brief about me: I'm [Your Name], with a background in machine learning and dat
 A **graph** is a mathematical structure used to model relationships.
 
 - **Nodes (or vertices):** entities  
-- **Edges:** connections between entities
+- **Edges:** relationships
 
 
 
-![w:400 center](https://upload.wikimedia.org/wikipedia/en/9/91/Category-graph.png)
+<!-- ![w:400 center](https://upload.wikimedia.org/wikipedia/en/9/91/Category-graph.png) -->
 
 <!--
 Speaker Notes:
@@ -95,16 +95,32 @@ Graphs are ubiquitous. From social networks to biological systems, they help us 
 -->
 
 
-## 📈 Graph Visual Example
+## 📈 Graph Example
 
-![w:400](https://upload.wikimedia.org/wikipedia/commons/6/6b/Graph_example.svg)
+![w:400 center](./imgs/karate_club.png)
 
-_A simple undirected graph showing Alice, Bob, Carol, and Dave and their connections._
+_A simple undirected graph showing a small group of individuals and their connections._
 
 <!--
 Speaker Notes:
 Here's a simple graph illustrating connections between individuals. Such visualizations help in understanding the structure and relationships within data.
 -->
+
+## 🌍 Graphs are everywhere
+
+![w:1000 center](./imgs/image.png)
+
+## 🌍 Graphs are everywhere
+
+![w:800 center](./imgs/text.png)
+
+## 🌍 Graphs are everywhere
+
+![w:1000 center](./imgs/protein.png)
+
+## 🌍 Graphs are everywhere
+
+![w:1000 center](./imgs/karate.png)
 
 
 ## 🤔 Why Use Graphs in Machine Learning?
@@ -119,15 +135,19 @@ Graphs let us:
   - Link prediction (e.g., will these users connect?)
   - Graph classification (e.g., toxic molecule or not)
 
-![w:400](https://upload.wikimedia.org/wikipedia/commons/3/3a/Graph_neural_network.png)
+
 
 <!--
 Speaker Notes:
 Graphs enable machine learning models to capture relationships and structures in data, allowing for more nuanced analyses like predicting fraudulent activities or understanding social connections.
 -->
 
+## 🚩 Types of graph problems
 
-## 🐍 Graphs in Python with `networkx`
+
+
+
+## 🐍 Graphs with `networkx`
 
 - A standard library for building and analyzing graphs
 
@@ -143,11 +163,13 @@ G.add_edges_from([
     ("Bob", "Dave")
 ])
 
-nx.draw(G, with_labels=True, node_color="lightblue", edge_color="gray")
+nx.draw(
+  G, with_labels=True, node_color="lightblue", edge_color="gray"
+)
 plt.show()
 ```
 
-![w:400](https://networkx.org/documentation/stable/_images/networkx_logo.png)
+![bg right 50%](./imgs/simple_graph.png)
 
 <!--
 Speaker Notes:
@@ -167,6 +189,12 @@ path = nx.shortest_path(G, source="Alice", target="Dave")
 print("Shortest path from Alice to Dave:", path)
 ```
 
+```bash
+Nodes: ['Alice', 'Bob', 'Carol', 'Dave']
+Edges: [('Alice', 'Bob'), ('Alice', 'Carol'), ('Bob', 'Dave'), ('Carol', 'Dave')]
+Degree of Carol: 2
+Shortest path from Alice to Dave: ['Alice', 'Carol', 'Dave']
+```
 <!--
 Speaker Notes:
 NetworkX provides various functions to analyze graphs, such as retrieving nodes and edges, calculating degrees, and finding shortest paths.
@@ -222,7 +250,7 @@ This is done through a process called:
 
 
 <!-- slide: data-auto-animate -->
-# 🔄 Message Passing – Step-by-Step
+# 🔄 Message Passing – Step-by-Step 1/2
 
 ### 1️⃣ Each Node Starts With a Feature Vector  
 Usually denoted as $( h_v^{(0)} )$
@@ -235,6 +263,8 @@ x = torch.tensor([
     ...
 ])
 ```
+
+# 🔄 Message Passing – Step-by-Step 2/2
 
 ### 2️⃣ At Each Layer:
 - A node gathers messages from neighbors
@@ -299,7 +329,7 @@ pip install torch
 pip install torch-geometric
 ```
 
-![w:400](https://pytorch.org/assets/images/pytorch-logo.png)
+![w:400 center](https://pytorch.org/assets/images/pytorch-logo.png)
 
 <!--
 Speaker Notes:
@@ -404,8 +434,8 @@ In fraud detection, entities like accounts and transactions can be modeled as gr
 
 - Nodes = Bitcoin addresses  
 - Edges = Transactions  
-- Features = temporal and transaction features  
-- Label: `fraud` (1) or `legit` (0)  
+- Features = temporal and transaction features
+- Label: `fraud` (1) or `legit` (0), $\approx 23\%$ of data is labeled, imbalance ratio 9:1
 - [Available on Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set)
 
 ![w:400](https://upload.wikimedia.org/wikipedia/commons/3/3c/Bitcoin_network_graph.png)
@@ -415,13 +445,6 @@ Speaker Notes:
 The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
 -->
 
-## 📈 Graph Visual Example
-
-```plaintext
-Alice ----- Bob
-  |         |
-Carol ---- Dave
-```
 
 
 ## Conclusions
