@@ -16,11 +16,11 @@ img[alt~="center"] {
 <!-- Intro Slide -->
 # Graph Machine Learning with Python  
 ### Pietro Mascolo
-#### Data Scientist
-
-![bg left:25%](./imgs/bg.jpg)
+&nbsp;
+<!-- ![bg left:25%](./imgs/bg.jpg) -->
 
 > A practical introduction to working with graphs in Python
+> https://bit.ly/4dp0Yju
 
 <!--
 Speaker Notes:
@@ -49,9 +49,9 @@ Here's our roadmap for today. We'll start with an introduction to graphs, move o
 
 - 👤 Name: Pietro
 - 👪 Husband and dad.
+- 🇮🇪 Based in ireland.
 - 💼 Data Scientist and AI Engineer.
 - 💻 Passionate about applied AI, Python, and Go.
-- 🧪 Working on fraud detection, social network analysis, etc. 
 -  🥋📷🥾
 - 📫 `@iz4vve`(X, github, ...)
 
@@ -207,6 +207,89 @@ Libraries like **PyTorch Geometric** make these easy to use.
 Speaker Notes:
 Several GNN architectures have been developed, each with unique approaches to aggregating and updating node information. PyTorch Geometric simplifies implementing these models.
 -->
+
+
+<!-- slide: title -->
+# 🧠 How Do Graph Neural Networks Work?
+
+A GNN learns a **representation for each node** based on:
+- Its own features
+- Its neighbors’ features
+
+This is done through a process called:
+
+### 🔄 Message Passing
+
+
+<!-- slide: data-auto-animate -->
+# 🔄 Message Passing – Step-by-Step
+
+### 1️⃣ Each Node Starts With a Feature Vector  
+Usually denoted as $( h_v^{(0)} )$
+
+```python
+# Example: Node feature matrix
+x = torch.tensor([
+    [1.0, 0.5],  # Node 0
+    [0.3, 1.2],  # Node 1
+    ...
+])
+```
+
+### 2️⃣ At Each Layer:
+- A node gathers messages from neighbors
+- Aggregates them (e.g. sum, mean)
+- Updates its own feature using a neural net
+
+
+<!-- slide: data-auto-animate -->
+# 🧠 GCN Layer Formula
+
+A common GNN layer is the **Graph Convolutional Network (GCN)**:
+
+$$
+h_v^{(l+1)} = \sigma\left( \sum_{u \in \mathcal{N}(v)} W h_u^{(l)} \right)
+$$
+
+Where:
+
+- $( h_v^{(l)} )$: Node $(v)$'s features at layer $(l)$
+- $( \mathcal{N}(v) )$: Neighbors of$ (v)$
+- $( W )$: Learnable weight matrix
+- $( \sigma )$: Non-linearity (e.g. ReLU)
+
+This spreads information across the graph — each node gets a bit smarter every layer.
+
+
+<!-- slide: data-auto-animate -->
+# 🧪 Example with Intuition
+
+Let’s say we want to **predict if a node is a fraudster**.
+
+At layer 0:
+- Node features might include:
+  - Transaction amount
+  - Account age
+  - Number of edges (degree)
+
+After 2 GCN layers:
+- Each node's features include signals from **its neighborhood**
+- Fraudsters tend to connect with other fraudsters — GNN learns that!
+
+🧠 Now you can classify nodes using a final MLP or softmax layer.
+
+
+
+<!-- slide -->
+# 🔁 Recap: GNNs in a Nutshell
+
+✅ GNNs learn node embeddings  
+✅ Each layer mixes neighborhood information  
+✅ Useful for:
+- Node classification (e.g. fraud detection)
+- Link prediction (e.g. friend suggestion)
+- Graph classification (e.g. molecule toxicity)
+
 
 
 ## 🔧 Install PyTorch Geometric (PyG)
