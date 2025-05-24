@@ -625,7 +625,7 @@ The Elliptic dataset provides a real-world example of transaction data in the Bi
 &nbsp;
 &nbsp;
 ### You can ask... I might even answer...
-<!-- _color: black-->
+<!-- _color: #444444-->
 <!-- _paginate: skip -->
 <!-- _footer: "" -->
 ![bg ](./imgs/questions.webp)
