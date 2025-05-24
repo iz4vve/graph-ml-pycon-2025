@@ -63,36 +63,22 @@ A brief about me: I'm [Your Name], with a background in machine learning and dat
 
 ## 🌐 What is a Graph?
 
-A **graph** is a mathematical structure used to model relationships.
+A **graph** represents the relations (edges) between a collection of entities (nodes).
 
 - **Nodes (or vertices):** entities  
-- **Edges:** relationships
+- **Edges:** relationships, can have a specific direction.
 
+Both can contain extra information and attributes.
 
-
-<!-- ![w:400 center](https://upload.wikimedia.org/wikipedia/en/9/91/Category-graph.png) -->
 
 <!--
 Speaker Notes:
-Graphs consist of nodes representing entities and edges representing relationships. They're powerful tools for modeling complex, interconnected systems.
+Graphs are all around us; real world objects are often defined in terms of their connections to other things. A set of objects, and the connections between them, are naturally expressed as a graph. Researchers have developed neural networks that operate on graph data (called graph neural networks, or GNNs) for over a decade
+. Recent developments have increased their capabilities and expressive power. We are starting to see practical applications in areas such as antibacterial discovery , physics simulations, fake news detection, traffic prediction and recommendation systems.
+
+This article explores and explains modern graph neural networks. We divide this work into four parts. First, we look at what kind of data is most naturally phrased as a graph, and some common examples. Second, we explore what makes graphs different from other types of data, and some of the specialized choices we have to make when using graphs. Third, we build a modern GNN, walking through each of the parts of the model, starting with historic modeling innovations in the field. We move gradually from a bare-bones implementation to a state-of-the-art GNN model. Fourth and finally, we provide a GNN playground where you can play around with a real-word task and dataset to build a stronger intuition of how each component of a GNN model contributes to the predictions it makes.
 -->
 
-
-## 🤝 Real-World Graph Examples
-
-- 🧑‍🤝‍🧑 Social Networks: People = nodes, Friendships = edges  
-- 🛒 E-commerce: Products = nodes, "bought-together" = edges  
-- 💳 Fraud Detection: Accounts = nodes, Transactions = edges  
-- 🔬 Biology: Proteins = nodes, Interactions = edges
-
-Graphs model **relational data** — something traditional ML doesn't capture well.
-
-![w:400](https://upload.wikimedia.org/wikipedia/commons/0/03/Social_Network_Analysis_Visualization.png)
-
-<!--
-Speaker Notes:
-Graphs are ubiquitous. From social networks to biological systems, they help us understand and analyze relationships in data that traditional machine learning might overlook.
--->
 
 
 ## 📈 Graph Example
@@ -106,21 +92,39 @@ Speaker Notes:
 Here's a simple graph illustrating connections between individuals. Such visualizations help in understanding the structure and relationships within data.
 -->
 
+
+
+## 🤝 Real-World Graph Examples
+
+- 🧑‍🤝‍🧑 Social Networks: People = nodes, Friendships = edges  
+- 🛒 E-commerce: Products = nodes, "bought-together" = edges  
+- 💳 Fraud Detection: Accounts = nodes, Transactions = edges  
+- 🔬 Biology: Proteins = nodes, Interactions = edges
+
+Graphs model **relational data** — something traditional ML doesn't capture well.
+
+
+<!--
+Speaker Notes:
+Graphs are ubiquitous. From social networks to biological systems, they help us understand and analyze relationships in data that traditional machine learning might overlook.
+-->
+
+
 ## 🌍 Graphs are everywhere
 
-![w:1000 center](./imgs/image.png)
+![w:1000 center](./imgs/imagew.png)
 
 ## 🌍 Graphs are everywhere
 
-![w:800 center](./imgs/text.png)
+![w:800 center](./imgs/textw.png)
 
 ## 🌍 Graphs are everywhere
 
-![w:1000 center](./imgs/protein.png)
+![w:1000 center](./imgs/proteinw.png)
 
 ## 🌍 Graphs are everywhere
 
-![w:1000 center](./imgs/karate.png)
+![w:1000 center](./imgs/karatew.png)
 
 
 ## 🤔 Why Use Graphs in Machine Learning?
@@ -134,6 +138,7 @@ Graphs let us:
   - Node classification (e.g., fraud or not)
   - Link prediction (e.g., will these users connect?)
   - Graph classification (e.g., toxic molecule or not)
+  - Analysis of complex relationships
 
 
 
@@ -149,27 +154,18 @@ Graphs enable machine learning models to capture relationships and structures in
 
 ## 🐍 Graphs with `networkx`
 
-- A standard library for building and analyzing graphs
-
 ```python
 import networkx as nx
-import matplotlib.pyplot as plt
 
 G = nx.Graph()
 G.add_edges_from([
-    ("Alice", "Bob"),
-    ("Alice", "Carol"),
-    ("Carol", "Dave"),
-    ("Bob", "Dave")
+    ("Alice", "Bob"), ("Alice", "Carol"), ("Carol", "Dave"), ("Bob", "Dave")
 ])
 
-nx.draw(
-  G, with_labels=True, node_color="lightblue", edge_color="gray"
-)
-plt.show()
+nx.draw(G, with_labels=True, node_color="lightblue", edge_color="gray")
 ```
 
-![bg right 50%](./imgs/simple_graph.png)
+![width:350 center](./imgs/simple_graph.png)
 
 <!--
 Speaker Notes:
@@ -179,25 +175,40 @@ NetworkX is a powerful Python library for creating and analyzing graphs. Here's 
 
 ## 🔍 Graph Analysis with `networkx`
 
-```python
-print("Nodes:", G.nodes())
-print("Edges:", G.edges())
-print("Degree of Carol:", G.degree("Carol"))
+```bash
+>>> print("Nodes:", G.nodes())
+Nodes: ['Alice', 'Bob', 'Carol', 'Dave']
+
+>>> print("Edges:", G.edges())
+Edges: [('Alice', 'Bob'), ('Alice', 'Carol'), ('Bob', 'Dave'), ('Carol', 'Dave')]
+
+>>> print("Degree of Carol:", G.degree("Carol"))
+Degree of Carol: 2
 
 # Find shortest path
-path = nx.shortest_path(G, source="Alice", target="Dave")
-print("Shortest path from Alice to Dave:", path)
-```
-
-```bash
-Nodes: ['Alice', 'Bob', 'Carol', 'Dave']
-Edges: [('Alice', 'Bob'), ('Alice', 'Carol'), ('Bob', 'Dave'), ('Carol', 'Dave')]
-Degree of Carol: 2
+>>> path = nx.shortest_path(G, source="Alice", target="Dave")
+>>> print("Shortest path from Alice to Dave:", path)
 Shortest path from Alice to Dave: ['Alice', 'Carol', 'Dave']
 ```
 <!--
 Speaker Notes:
 NetworkX provides various functions to analyze graphs, such as retrieving nodes and edges, calculating degrees, and finding shortest paths.
+-->
+
+## 🎨 Graph representation
+
+<!--
+So, how do we go about solving these different graph tasks with neural networks? The first step is to think about how we will represent graphs to be compatible with neural networks.
+
+Machine learning models typically take rectangular or grid-like arrays as input. So, it’s not intuitive how to represent them in a format that is compatible with deep learning. Graphs have up to four types of information: nodes, edges, global-context and connectivity. The first three are relatively straightforward: for example, with nodes we can form a node feature matrix 𝑁
+ by assigning each node an index 𝑖 and storing the feature for 𝑛𝑜𝑑𝑒𝑖 in 𝑁
+
+However, representing a graph’s connectivity is more complicated. Perhaps the most obvious choice would be to use an adjacency matrix, since this is easily tensorisable. A few drawbacks. From the example dataset table, we see the number of nodes in a graph can be on the order of millions, and the number of edges per node can be highly variable. Often, this leads to very sparse adjacency matrices, which are space-inefficient.
+
+Another problem is that there are many adjacency matrices that can encode the same connectivity, and there is no guarantee that these different matrices would produce the same result in a deep neural network (that is to say, they are not permutation invariant).
+
+Learning permutation invariant operations is an area of recent research.
+For example, the Othello graph from before can be described equivalently with these two adjacency matrices. It can also be described with every other possible permutation of the nodes.
 -->
 
 
@@ -212,7 +223,7 @@ Typical pipeline:
 2. Perform message passing via GNN layers
 3. Predict labels or scores (fraud, risk, etc.)
 
-![w:400](https://upload.wikimedia.org/wikipedia/commons/4/4c/Graph_Neural_Network.png)
+
 
 <!--
 Speaker Notes:
@@ -272,7 +283,6 @@ x = torch.tensor([
 - Updates its own feature using a neural net
 
 
-<!-- slide: data-auto-animate -->
 # 🧠 GCN Layer Formula
 
 A common GNN layer is the **Graph Convolutional Network (GCN)**:
