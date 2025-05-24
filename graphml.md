@@ -2,7 +2,11 @@
 marp: true
 theme: rose-pine
 paginate: true
+class: 
+  lead
+  invert
 headingDivider: 2
+footer: Pycon 2025
 ---
 <style>
 img[alt~="center"] {
@@ -11,13 +15,15 @@ img[alt~="center"] {
 }
 </style>
 
-<!-- class: invert -->
 
 <!-- Intro Slide -->
-# Graph Machine Learning with Python  
-### Pietro Mascolo
+<!-- _paginate: skip -->
+# Graph Machine Learning with Python
+##### Bologna, 2025-05-29
+
 &nbsp;
 <!-- ![bg left:25%](./imgs/bg.jpg) -->
+
 
 > A practical introduction to working with graphs in Python
 > https://bit.ly/4dp0Yju
@@ -27,14 +33,14 @@ Speaker Notes:
 Welcome everyone! I'm [Your Name], and today we'll explore how to leverage graph structures in machine learning using Python. We'll delve into the basics of graphs, explore Python libraries like NetworkX and PyTorch Geometric, and work through a practical example in fraud detection.
 -->
 
-
+<!-- slide: data-auto-animate -->
 ## 🗂️ Agenda
 
 1. 👋 Introduction  
 2. 🌐 Graph Fundamentals  
 3. 🐍 Working with Graphs in Python  
 4. 🧠 Graph Neural Networks  
-5. 🛠️ Practical Example: Fraud Detection with PyTorch Geometric  
+5. 🛠️ Real world example
 6. 🧾 Summary & Q&A
 
 <!--
@@ -49,10 +55,10 @@ Here's our roadmap for today. We'll start with an introduction to graphs, move o
 
 - 👤 Name: Pietro
 - 👪 Husband and dad.
-- 🇮🇪 Based in ireland.
+- 🇮🇪 Based in Ireland.
 - 💼 Data Scientist and AI Engineer.
 - 💻 Passionate about applied AI, Python, and Go.
--  🥋📷🥾
+-  🥋  📷  📻  🥾
 - 📫 `@iz4vve`(X, github, ...)
 
 <!--
@@ -60,6 +66,12 @@ Speaker Notes:
 A brief about me: I'm [Your Name], with a background in machine learning and data science. My work focuses on applying AI to real-world problems, especially those involving graph structures like fraud detection and social network analysis.
 -->
 
+
+# Graphs
+&nbsp;
+<!-- _paginate: skip -->
+<!-- _footer: "" -->
+![bg](./imgs/graphbg.webp)
 
 ## 🌐 What is a Graph?
 
@@ -127,6 +139,12 @@ Graphs are ubiquitous. From social networks to biological systems, they help us 
 ![w:1000 center](./imgs/karatew.png)
 
 
+# Graph Machine Learning
+<!-- _paginate: skip -->
+<!-- _footer: "" -->
+![bg](./imgs/graphml.webp)
+
+
 ## 🤔 Why Use Graphs in Machine Learning?
 
 Traditional ML struggles with **non-Euclidean** data.  
@@ -147,8 +165,133 @@ Speaker Notes:
 Graphs enable machine learning models to capture relationships and structures in data, allowing for more nuanced analyses like predicting fraudulent activities or understanding social connections.
 -->
 
-## 🚩 Types of graph problems
+<!-- slide: data-auto-animate -->
+## 🚩 Types of problems
 
+![bg right:57%](./imgs/graph_example.webp)
+
+ - Node classification
+ - Graph classification
+ - Link prediction
+ - Graph regression
+ - Node regression
+ - Edge regression
+ - Edge classification
+ - Spatio-temporal Prediction
+ - Graph Generation
+ - ...
+
+<!-- 
+1. Node Classification
+Task: Predict a label for each node based on features and graph structure.
+Examples:
+
+Predicting whether a user is a bot or human in a social network.
+
+Classifying academic papers by topic in a citation network.
+
+Identifying disease-associated proteins in a biological interaction graph.
+GNNs: GCN, GraphSAGE, GAT
+
+2. Graph Classification
+Task: Predict a label for an entire graph.
+Examples:
+
+Classifying molecules as toxic or non-toxic.
+
+Detecting fraudulent vs. legitimate financial transaction graphs.
+
+Diagnosing diseases based on brain connectivity graphs.
+GNNs: GIN, DiffPool, DGCNN
+
+3. Link Prediction
+Task: Predict whether an edge exists between two nodes.
+Examples:
+
+Recommending friends in social networks (e.g., Facebook).
+
+Inferring missing connections in knowledge graphs.
+
+Predicting interactions between drugs and proteins.
+GNNs: Graph Autoencoder (GAE), GraphSAGE, SEAL
+
+4. Graph Regression
+Task: Predict a continuous value for a graph.
+Examples:
+
+Estimating the binding affinity of molecules to a target.
+
+Predicting the melting point of chemical compounds.
+
+Computing energy of physical systems in quantum chemistry.
+GNNs: MPNN, GIN, EGNN
+
+5. Node Regression
+Task: Predict continuous values at the node level.
+Examples:
+
+Forecasting temperature at each weather station in a sensor network.
+
+Predicting real estate values in a city-wide spatial graph.
+
+Estimating node centrality or influence in a social network.
+GNNs: GCN, GraphSAGE, ChebNet
+
+6. Edge Classification
+Task: Classify the type or label of an edge between nodes.
+Examples:
+
+Classifying relationships (e.g., "employed by", "located in") in a knowledge graph.
+
+Identifying transaction types in a financial network.
+
+Detecting communication types (text, voice, video) between users.
+GNNs: R-GCN, GAT, MPNN
+
+7. Spatio-temporal Prediction
+Task: Forecast values that vary over time on a graph.
+Examples:
+
+Predicting future traffic speed on roads.
+
+Forecasting electricity demand across a power grid.
+
+Anticipating crowd movement in public spaces.
+GNNs: ST-GCN, T-GCN, DCRNN
+
+8. Edge Regression
+Task: Predict a continuous value associated with an edge.
+Examples:
+
+Estimating travel time between two locations in a road network.
+
+Predicting latency in a computer or telecom network.
+
+Estimating trust scores in peer-to-peer systems.
+GNNs: MPNN, EGNN, SE(3)-Transformer
+
+9. Graph Generation
+Task: Generate new graphs that mimic properties of training graphs.
+Examples:
+
+Designing new molecules for drug discovery.
+
+Creating synthetic social graphs for simulation/testing.
+
+Generating neural architectures in NAS (Neural Architecture Search).
+GNNs: GraphRNN, GraphVAE, GraphAF
+
+10. Heterogeneous Graph Learning
+Task: Learn from graphs with multiple types of nodes/edges.
+Examples:
+
+Recommending content to users in a user–item–tag graph.
+
+Predicting paper impact in an academic graph with authors, papers, and venues.
+
+Detecting fraud in transaction graphs with users, devices, and merchants.
+GNNs: HAN, R-GCN, HGT
+-->
 
 
 
@@ -211,6 +354,35 @@ Learning permutation invariant operations is an area of recent research.
 For example, the Othello graph from before can be described equivalently with these two adjacency matrices. It can also be described with every other possible permutation of the nodes.
 -->
 
+![width:1000 center](./imgs/permutationinvariant.png)
+
+
+## 🎨 Graph representation (permutation invariant)
+<!-- _footer: "" -->
+
+```python
+# adjacency list
+adj_list = """
+  A B C
+  B C D
+  C D
+  D A
+"""
+
+node_properties = {
+  "A": { ... },
+  "B": { ... },
+  ...
+}
+
+edge_properties = {
+  ('A', 'B'): { ... },
+  ('A', 'C'): { ... },
+  ...
+}
+```
+
+
 
 ## 🧠 What Are Graph Neural Networks (GNNs)?
 
@@ -233,14 +405,16 @@ Graph Neural Networks extend traditional neural networks to graph data, allowing
 
 ## 📚 Popular GNN Architectures
 
+![bg right:56%](./imgs/brain.webp)
 - **GCN** (Graph Convolutional Network)  
 - **GAT** (Graph Attention Network)  
 - **GraphSAGE**  
 - **GIN** (Graph Isomorphism Network)
+- ...
 
 Libraries like **PyTorch Geometric** make these easy to use.
 
-![w:400](https://pytorch-geometric.readthedocs.io/en/latest/_images/torch_geometric_logo.png)
+
 
 <!--
 Speaker Notes:
@@ -248,20 +422,16 @@ Several GNN architectures have been developed, each with unique approaches to ag
 -->
 
 
-<!-- slide: title -->
 # 🧠 How Do Graph Neural Networks Work?
 
 A GNN learns a **representation for each node** based on:
 - Its own features
 - Its neighbors’ features
 
-This is done through a process called:
-
-### 🔄 Message Passing
+This is done through a process called **Message Passing**
 
 
-<!-- slide: data-auto-animate -->
-# 🔄 Message Passing – Step-by-Step 1/2
+<!-- # 🔄 Message Passing – Step-by-Step 1/2
 
 ### 1️⃣ Each Node Starts With a Feature Vector  
 Usually denoted as $( h_v^{(0)} )$
@@ -273,9 +443,10 @@ x = torch.tensor([
     [0.3, 1.2],  # Node 1
     ...
 ])
-```
+``` 
+-->
 
-# 🔄 Message Passing – Step-by-Step 2/2
+# 🔄 Message Passing – Step-by-Step
 
 ### 2️⃣ At Each Layer:
 - A node gathers messages from neighbors
@@ -283,9 +454,7 @@ x = torch.tensor([
 - Updates its own feature using a neural net
 
 
-# 🧠 GCN Layer Formula
-
-A common GNN layer is the **Graph Convolutional Network (GCN)**:
+# 🧠 GCN Layer
 
 $$
 h_v^{(l+1)} = \sigma\left( \sum_{u \in \mathcal{N}(v)} W h_u^{(l)} \right)
@@ -294,15 +463,13 @@ $$
 Where:
 
 - $( h_v^{(l)} )$: Node $(v)$'s features at layer $(l)$
-- $( \mathcal{N}(v) )$: Neighbors of$ (v)$
+- $( \mathcal{N}(v) )$: Neighbors of $(v)$
 - $( W )$: Learnable weight matrix
 - $( \sigma )$: Non-linearity (e.g. ReLU)
 
-This spreads information across the graph — each node gets a bit smarter every layer.
-
 
 <!-- slide: data-auto-animate -->
-# 🧪 Example with Intuition
+<!-- # 🧪 Example with Intuition
 
 Let’s say we want to **predict if a node is a fraudster**.
 
@@ -316,11 +483,9 @@ After 2 GCN layers:
 - Each node's features include signals from **its neighborhood**
 - Fraudsters tend to connect with other fraudsters — GNN learns that!
 
-🧠 Now you can classify nodes using a final MLP or softmax layer.
+🧠 Now you can classify nodes using a final MLP or softmax layer. -->
 
 
-
-<!-- slide -->
 # 🔁 Recap: GNNs in a Nutshell
 
 ✅ GNNs learn node embeddings  
@@ -331,15 +496,19 @@ After 2 GCN layers:
 - Graph classification (e.g. molecule toxicity)
 
 
+# Implementing a GNN
+<!-- _paginate: skip -->
+<!-- _footer: "" -->
+![bg](./imgs/gnnbg.avif)
 
-## 🔧 Install PyTorch Geometric (PyG)
+<!-- ## 🔧 Install PyTorch Geometric (PyG)
 
 ```bash
 pip install torch
 pip install torch-geometric
 ```
 
-![w:400 center](https://pytorch.org/assets/images/pytorch-logo.png)
+![w:400 center](https://pytorch.org/assets/images/pytorch-logo.png) -->
 
 <!--
 Speaker Notes:
@@ -349,22 +518,17 @@ To get started with PyTorch Geometric, install PyTorch followed by torch-geometr
 
 ## 🧪 Simple GNN with PyG
 
-We’ll start with the **Karate Club dataset**, a classic benchmark.
-
 ```python
-from torch_geometric.datasets import KarateClub
 from torch_geometric.nn import GCNConv
 import torch.nn.functional as F
 import torch
 
-dataset = KarateClub()
-data = dataset[0]
 
 class GCN(torch.nn.Module):
-    def __init__(self):
+    def __init__(self, num_features=100, num_classes=2, hidden_dim=16):
         super().__init__()
-        self.conv1 = GCNConv(data.num_features, 16)
-        self.conv2 = GCNConv(16, dataset.num_classes)
+        self.conv1 = GCNConv(num_features, hidden_dim)
+        self.conv2 = GCNConv(hidden_dim, num_classes)
 
     def forward(self, x, edge_index):
         x = self.conv1(x, edge_index)
@@ -372,8 +536,6 @@ class GCN(torch.nn.Module):
         x = self.conv2(x, edge_index)
         return F.log_softmax(x, dim=1)
 ```
-
-![w:400](https://upload.wikimedia.org/wikipedia/commons/7/7b/Zachary%27s_karate_club_network.png)
 
 <!--
 Speaker Notes:
@@ -455,8 +617,22 @@ Speaker Notes:
 The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
 -->
 
-
+## Results
 
 ## Conclusions
 
-## Thanks
+## Questions?
+&nbsp;
+&nbsp;
+### You can ask... I might even answer...
+<!-- _color: black-->
+<!-- _paginate: skip -->
+<!-- _footer: "" -->
+![bg ](./imgs/questions.webp)
+
+
+# Thanks for your attention
+&nbsp;
+<!-- _paginate: skip -->
+<!-- _footer: "" -->
+![bg width:95%](./imgs/attention2.jpg)
