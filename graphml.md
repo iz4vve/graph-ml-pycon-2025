@@ -583,7 +583,45 @@ After training, we evaluate the model's performance on the test set by calculati
 -->
 
 
-## ⚠️ Real-World Use Case: Fraud Detection
+## ⚠️ Real-World Use Case: Paper classification
+
+Paper citations often form complex **graph topologies**.  
+
+A GNN can learn **structural patterns** better than traditional ML, which can be leveraged to infer a paper's category from the paper it cites and the papers that cite it.
+
+
+
+<!--
+Speaker Notes:
+In fraud detection, entities like accounts and transactions can be modeled as graphs, allowing GNNs to detect complex fraudulent patterns that traditional methods might miss.
+-->
+
+## 📚 Cora Dataset Overview
+
+A benchmark citation network used for node classification and graph learning tasks.
+
+<div style="padding-left: 40px">
+
+>>> | **Property**        | **Value**                    |
+>>> |---------------------|------------------------------|
+>>> | Dataset Name        | Cora                         |
+>>> | Task                | Node Classification          |
+>>> | Number of Nodes     | 2,708                        |
+>>> | Number of Edges     | 5,429 (undirected)           |
+>>> | Number of Classes   | 70                           |
+>>> | Node Features       | 1,433 (bag-of-words)         |
+>>> | Edge Type           | Paper cites paper            |
+
+</div>
+
+## 💡 Label Distribution & Use
+
+- Each node = 1 paper
+- Classes = 7 topics (e.g., Reinforcement Learning, Probabilistic Methods)
+- Used in benchmarks for: GCN, GAT, GraphSAGE, etc.
+
+
+<!-- ## ⚠️ Real-World Use Case: Fraud detection
 
 Fraud networks often form complex **graph topologies**.  
 Examples:
@@ -594,13 +632,6 @@ Examples:
 
 A GNN can learn suspicious **structural patterns** better than traditional ML.
 
-![w:400](https://upload.wikimedia.org/wikipedia/commons/6/6a/Fraud_detection_graph.png)
-
-<!--
-Speaker Notes:
-In fraud detection, entities like accounts and transactions can be modeled as graphs, allowing GNNs to detect complex fraudulent patterns that traditional methods might miss.
--->
-
 
 ## 📂 Dataset: Elliptic Bitcoin Graph
 
@@ -609,16 +640,24 @@ In fraud detection, entities like accounts and transactions can be modeled as gr
 - Features = temporal and transaction features
 - Label: `fraud` (1) or `legit` (0), $\approx 23\%$ of data is labeled, imbalance ratio 9:1
 - [Available on Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set)
+ -->
 
-![w:400](https://upload.wikimedia.org/wikipedia/commons/3/3c/Bitcoin_network_graph.png)
-
-<!--
+<!--ß
 Speaker Notes:
 The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
 -->
 
 ## Results
 
+>>> |                 | **GBC**     | **GNN**    |
+>>> |-----------------|-------------|------------|
+>>> | Training time   | 218 min     | 27.8 s     |
+>>> | Accuracy        | 0.543       | 0.722      |
+>>> | Precision       | 0.554       | 0.723      |
+>>> | Recall          | 0.543       | 0.722      |
+>>> | F1              | 0.542       | 0.718      |
+>>> | ROC (OvR)       | 0.904       | 0.985      |
+ß
 ## Conclusions
 
 <!--
