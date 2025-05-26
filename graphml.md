@@ -621,6 +621,16 @@ The Elliptic dataset provides a real-world example of transaction data in the Bi
 
 ## Conclusions
 
+<!--
+Speaker Notes:
+Disadvantages of Graph Neural Networks
+There are a few drawbacks to using GNNs
+
+ - Most neural networks can go deep to obtain better performance, GNNs are shallow networks mostly with three layers. It limits us from achieving state-of-the-art performance on large datasets.
+ - The graph structures are constantly changing, making it harder to train a model on it. 
+ - Deploying the model to production faces scalability issues as these networks are computationally expensive. If you have a large and complex graph structure, it will be hard for you to scale the GNNs in production. 
+-->
+
 ## Questions?
 &nbsp;
 &nbsp;
