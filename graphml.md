@@ -642,7 +642,7 @@ A GNN can learn suspicious **structural patterns** better than traditional ML.
 - [Available on Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set)
  -->
 
-<!--ß
+<!--
 Speaker Notes:
 The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
 -->
@@ -657,7 +657,7 @@ The Elliptic dataset provides a real-world example of transaction data in the Bi
 >>> | Recall          | 0.543       | 0.722      |
 >>> | F1              | 0.542       | 0.718      |
 >>> | ROC (OvR)       | 0.904       | 0.985      |
-ß
+
 ## Conclusions
 
 <!--
