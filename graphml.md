@@ -7,6 +7,7 @@ class:
   invert
 headingDivider: 2
 footer: Pycon 2025
+math: mathjax
 ---
 <style>
 img[alt~="center"] {
