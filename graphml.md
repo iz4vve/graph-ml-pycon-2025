@@ -647,18 +647,26 @@ Speaker Notes:
 The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
 -->
 
-## Results
 
->>> |                 | **GBC**     | **GNN**    |
->>> |-----------------|-------------|------------|
->>> | Training time   | 218 min     | 27.8 s     |
->>> | Accuracy        | 0.543       | 0.722      |
->>> | Precision       | 0.554       | 0.723      |
->>> | Recall          | 0.543       | 0.722      |
->>> | F1              | 0.542       | 0.718      |
->>> | ROC (OvR)       | 0.904       | 0.985      |
+## 🗳️ Results
 
-## Conclusions
+ > |          | Training time | Accuracy | Precision | Recall | F1    | AUROC (OvR)
+ > |----------|---------------|----------|-----------|--------|-------|------------
+ > | **GBC**  | 218 min       | 0.543    | 0.554     | 0.543  | 0.542 | 0.904
+ > | **GCN**  | 27.8 s        | 0.722    | 0.722     | 0.723  | 0.722 | 0.985
+
+
+<!-- slide: title -->
+# 🧾 Conclusions
+
+- GNNs **capture structure** — they understand not just what something is, but **how it's connected**
+- Real-world data is often **relational**
+
+GNNs are useful when **connections** matter more than just features:
+  - **Fraud detection** – suspicious behavior is often found in clusters
+  - **Recommender systems** – based on user-item relationships
+  - **Social networks** – influence spreads through links
+  - **Molecular biology** – atoms connected in meaningful ways
 
 <!--
 Speaker Notes:
@@ -670,7 +678,7 @@ There are a few drawbacks to using GNNs
  - Deploying the model to production faces scalability issues as these networks are computationally expensive. If you have a large and complex graph structure, it will be hard for you to scale the GNNs in production. 
 -->
 
-## Questions?
+## 🙋‍♀️🙋🙋‍♂️Questions?
 &nbsp;
 &nbsp;
 ### You can ask... I might even answer...
