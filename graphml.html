@@ -62,7 +62,6 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-class="lead invert" data-footer="Pycon 2025" data-heading-divider="2" lang="en-US" class="lead invert" data-marpit-pagination="4" style="--paginate:true;--class:lead invert;--footer:Pycon 2025;--heading-divider:2;" data-marpit-pagination-total="29">
 <h2 id="%F0%9F%93%88-graph-examples"><img class="emoji" draggable="false" alt="📈" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4c8.svg" data-marp-twemoji=""/> Graph Examples</h2>
 <p><img src="./imgs/graphexamples.webp" alt="center" style="width:750px;" /></p>
-<p><em>A simple undirected graph showing a small group of individuals and their connections.</em></p>
 <footer>Pycon 2025</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-class="lead invert" data-footer="Pycon 2025" data-heading-divider="2" lang="en-US" class="lead invert" data-marpit-pagination="5" style="--paginate:true;--class:lead invert;--footer:Pycon 2025;--heading-divider:2;" data-marpit-pagination-total="29">
@@ -595,7 +594,21 @@ After 2 GCN layers:
 - Fraudsters tend to connect with other fraudsters — GNN learns that!
 
 🧠 Now you can classify nodes using a final MLP or softmax layer.</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>Speaker Notes:
-Several GNN architectures have been developed, each with unique approaches to aggregating and updating node information. PyTorch Geometric simplifies implementing these models.</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>## 🔧 Install PyTorch Geometric (PyG)
+Several GNN architectures have been developed, each with unique approaches to aggregating and updating node information. PyTorch Geometric simplifies implementing these models.
+
+🧠 GNN Architectures – Quick Overview
+
+• GCN (Graph Convolutional Network):  
+  Works like CNNs but on graphs. Each node averages features from its neighbors and passes them through a neural net. Simple and effective for graphs where connected nodes are similar.
+
+• GraphSAGE (Graph Sample and Aggregate):  
+  Learns how to aggregate neighbor features using mean, LSTM, or pooling. Supports inductive learning, so it can generalize to unseen nodes and graphs.
+
+• GAT (Graph Attention Network):  
+  Uses attention mechanisms to let each node weigh its neighbors differently. Great when some neighbors are more important than others.
+
+• GIN (Graph Isomorphism Network):  
+  A powerful model that uses MLPs to distinguish between different graph structures. It’s as expressive as possible, capable of capturing subtle structural differences.</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>## 🔧 Install PyTorch Geometric (PyG)
 
 ```bash
 pip install torch
@@ -603,30 +616,10 @@ pip install torch-geometric
 ```
 
 ![w:400 center](https://pytorch.org/assets/images/pytorch-logo.png)</p><p>Speaker Notes:
-To get started with PyTorch Geometric, install PyTorch followed by torch-geometric using pip.</p></div><div class="bespoke-marp-note" data-index="25" tabindex="0"><p>Speaker Notes:
-Let's implement a simple Graph Convolutional Network using the Karate Club dataset, which represents social interactions in a karate club.</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>Speaker Notes:
+To get started with PyTorch Geometric, install PyTorch followed by torch-geometric using pip.</p></div><div class="bespoke-marp-note" data-index="26" tabindex="0"><p>Speaker Notes:
 We train the GCN model using the Adam optimizer and negative log-likelihood loss. After 200 epochs, the model should be well-trained.</p></div><div class="bespoke-marp-note" data-index="27" tabindex="0"><p>Speaker Notes:
 After training, we evaluate the model's performance on the test set by calculating the accuracy of its predictions.</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>Speaker Notes:
-In fraud detection, entities like accounts and transactions can be modeled as graphs, allowing GNNs to detect complex fraudulent patterns that traditional methods might miss.</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>## ⚠️ Real-World Use Case: Fraud detection
-
-Fraud networks often form complex **graph topologies**.  
-Examples:
-
-- Fraud rings  
-- Transaction laundering  
-- Identity theft patterns
-
-A GNN can learn suspicious **structural patterns** better than traditional ML.
-
-
-## 📂 Dataset: Elliptic Bitcoin Graph
-
-- Nodes = Bitcoin addresses  
-- Edges = Transactions  
-- Features = temporal and transaction features
-- Label: `fraud` (1) or `legit` (0), $\approx 23\%$ of data is labeled, imbalance ratio 9:1
-- [Available on Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set)</p><p>Speaker Notes:
-The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>slide: title</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>Speaker Notes:
+In fraud detection, entities like accounts and transactions can be modeled as graphs, allowing GNNs to detect complex fraudulent patterns that traditional methods might miss.</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>slide: title</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>Speaker Notes:
 Disadvantages of Graph Neural Networks
 There are a few drawbacks to using GNNs
 

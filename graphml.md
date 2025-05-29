@@ -98,7 +98,6 @@ This article explores and explains modern graph neural networks. We divide this 
 
 ![w:750 center](./imgs/graphexamples.webp)
 
-_A simple undirected graph showing a small group of individuals and their connections._
 
 <!--
 Speaker Notes:
