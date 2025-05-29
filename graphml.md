@@ -20,6 +20,7 @@ img[alt~="center"] {
 <!-- Intro Slide -->
 <!-- _paginate: skip -->
 # Graph Machine Learning with Python
+### Pietro Mascolo
 ##### Bologna, 2025-05-29
 
 &nbsp;
@@ -54,9 +55,9 @@ Here's our roadmap for today. We'll start with an introduction to graphs, move o
 
 ![w:200](https://via.placeholder.com/150)
 
-- 👤 Pietro Mascolo
+- 👤 Pietro
+- 🇧🇷 🇮🇹 🇮🇪 🇮🇳 
 - 👪 Husband and dad.
-- 🇮🇪 Based in Ireland.
 - 💼 Data Scientist and AI Engineer.
 - 💻 Passionate about applied AI, Python, and Go.
 -  🥋  📷  📻  🥾
