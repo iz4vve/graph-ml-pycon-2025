@@ -635,6 +635,22 @@ A benchmark citation network used for node classification and graph learning tas
 
  > |          | Training time | Accuracy | Precision | Recall | F1    | 
  > |----------|---------------|----------|-----------|--------|-------|
+ > | **GBC**  |   ?????        | ?????    | ?????  | ????? | ?????
+ > | **GCN**  |   ?????      |  ?????   |  ?????   | ????? |  ????? 
+
+
+ ## 🗳️ Results
+
+ > |          | Training time | Accuracy | Precision | Recall | F1    | 
+ > |----------|---------------|----------|-----------|--------|-------|
+ > | **GBC**  |   218 min         | ?????    | ?????  | ????? | ?????
+ > | **GCN**  |   27.8 s      |  ?????   |  ?????   | ????? |  ????? 
+
+
+## 🗳️ Results
+
+ > |          | Training time | Accuracy | Precision | Recall | F1    | 
+ > |----------|---------------|----------|-----------|--------|-------|
  > | **GBC**  | 218 min       | 0.543    | 0.554     | 0.543  | 0.542 |
  > | **GCN**  | 27.8 s        | 0.722    | 0.722     | 0.723  | 0.722 
 
