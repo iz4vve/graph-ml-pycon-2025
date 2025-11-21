@@ -20,6 +20,7 @@ img[alt~="center"] {
 <!-- Intro Slide -->
 <!-- _paginate: skip -->
 # Graph Machine Learning with Python
+### Pietro Mascolo
 ##### Bologna, 2025-05-29
 
 &nbsp;
@@ -31,7 +32,7 @@ img[alt~="center"] {
 
 <!--
 Speaker Notes:
-Welcome everyone! I'm [Your Name], and today we'll explore how to leverage graph structures in machine learning using Python. We'll delve into the basics of graphs, explore Python libraries like NetworkX and PyTorch Geometric, and work through a practical example in fraud detection.
+Welcome everyone! I'm [Your Name], and today we'll explore how to leverage graph structures in machine learning using Python. We'll delve into the basics of graphs, explore Python libraries like NetworkX and PyTorch Geometric, and work through a practical example of classification.
 -->
 
 <!-- slide: data-auto-animate -->
@@ -46,7 +47,7 @@ Welcome everyone! I'm [Your Name], and today we'll explore how to leverage graph
 
 <!--
 Speaker Notes:
-Here's our roadmap for today. We'll start with an introduction to graphs, move on to how Python handles them, dive into graph neural networks, and conclude with a hands-on example in fraud detection.
+Here's our roadmap for today. We'll start with an introduction to graphs, move on to how Python handles them, dive into graph neural networks, and conclude with a hands-on example in node classification.
 -->
 
 
@@ -54,13 +55,13 @@ Here's our roadmap for today. We'll start with an introduction to graphs, move o
 
 ![w:200](https://via.placeholder.com/150)
 
-- 👤 Name: Pietro
+- 👤 Pietro
+- 🇧🇷 🇮🇹 🇮🇪 🇮🇳 
 - 👪 Husband and dad.
-- 🇮🇪 Based in Ireland.
 - 💼 Data Scientist and AI Engineer.
 - 💻 Passionate about applied AI, Python, and Go.
 -  🥋  📷  📻  🥾
-- 📫 `@iz4vve`(X, github, ...)
+- 📫 `@iz4vve`
 
 <!--
 Speaker Notes:
@@ -89,23 +90,23 @@ Speaker Notes:
 Graphs are all around us; real world objects are often defined in terms of their connections to other things. A set of objects, and the connections between them, are naturally expressed as a graph. Researchers have developed neural networks that operate on graph data (called graph neural networks, or GNNs) for over a decade
 . Recent developments have increased their capabilities and expressive power. We are starting to see practical applications in areas such as antibacterial discovery , physics simulations, fake news detection, traffic prediction and recommendation systems.
 
-This article explores and explains modern graph neural networks. We divide this work into four parts. First, we look at what kind of data is most naturally phrased as a graph, and some common examples. Second, we explore what makes graphs different from other types of data, and some of the specialized choices we have to make when using graphs. Third, we build a modern GNN, walking through each of the parts of the model, starting with historic modeling innovations in the field. We move gradually from a bare-bones implementation to a state-of-the-art GNN model. Fourth and finally, we provide a GNN playground where you can play around with a real-word task and dataset to build a stronger intuition of how each component of a GNN model contributes to the predictions it makes.
+This article explores and explains modern graph neural networks. We divide this work into four parts. First, we look at what kind of data is most naturally represented as a graph, and some common examples. Second, we explore what makes graphs different from other types of data, and some of the specialized choices we have to make when using graphs. Third, we build a modern GNN, walking through each of the parts of the model, starting with historic modeling innovations in the field.
 -->
 
 
 
-## 📈 Graph Example
+## 📈 Graph Examples
 
-![w:400 center](./imgs/karate_club.png)
+![w:750 center](./imgs/graphexamples.webp)
 
-_A simple undirected graph showing a small group of individuals and their connections._
 
 <!--
 Speaker Notes:
 Here's a simple graph illustrating connections between individuals. Such visualizations help in understanding the structure and relationships within data.
+
+This particular graph is a common dataset used to introduce novices to the concepts of graphs and how to work with them.
+This is the Karate Club dataset; the nodes represent students and instructors at a dojo and edges are the interaction among them outside of the dojo. The task it to identify students' loyalties after a political schizm that caused an instructor to fall out with the sensei.
 -->
-
-
 
 ## 🤝 Real-World Graph Examples
 
@@ -127,17 +128,36 @@ Graphs are ubiquitous. From social networks to biological systems, they help us 
 
 ![w:1000 center](./imgs/imagew.png)
 
+<!-- Speaker Notes:
+A lot of data structures can be represented using graphs. Examples include image representation; in this case each pixel is represented by a node and edges connect each pixel to its neighbours.
+In this picture you can also see what's called an 'Adjacency matrix', which we will explore a bit more later.
+-->
+
 ## 🌍 Graphs are everywhere
 
 ![w:800 center](./imgs/textw.png)
+
+<!-- Speaker Notes:
+Sentences and texts can also be represented by a simple graph, one in which each node is connected to the following in a directed graph.
+-->
 
 ## 🌍 Graphs are everywhere
 
 ![w:1000 center](./imgs/proteinw.png)
 
+<!-- Speaker Notes:
+
+Graphs are also common type of representation for molecules and chemicals.
+-->
+
 ## 🌍 Graphs are everywhere
 
 ![w:1000 center](./imgs/karatew.png)
+
+<!-- Speaker Notes:
+
+Social circles are another common category represented by graphs. These can often be heterogeneous, including multiple types of entities and connections. Picture, for example, a graph that includes customers, orders, payments, shipments, complaints, and more...
+-->
 
 
 # Graph Machine Learning
@@ -389,13 +409,11 @@ edge_properties = {
 
 > GNNs are neural networks that operate on graph structures.
 
-Each node aggregates and updates its **feature vector** from its neighbors.
+A GNN learns a **representation for each node** based on:
+- Its own features
+- Its neighbors’ features
 
-Typical pipeline:
-1. Initialize node features (e.g., account age, balance)
-2. Perform message passing via GNN layers
-3. Predict labels or scores (fraud, risk, etc.)
-
+This is done through a process called **Message Passing**
 
 
 <!--
@@ -404,52 +422,14 @@ Graph Neural Networks extend traditional neural networks to graph data, allowing
 -->
 
 
-## 📚 Popular GNN Architectures
+## 🧠 Graph Convolutional Networks
 
-![bg right:56%](./imgs/brain.webp)
-- **GCN** (Graph Convolutional Network)  
-- **GAT** (Graph Attention Network)  
-- **GraphSAGE**  
-- **GIN** (Graph Isomorphism Network)
-- ...
-
-Libraries like **PyTorch Geometric** make these easy to use.
+![width:1000 center](./imgs/cnngcn.webp)
 
 
+## 🔄 Message Passing – Step-by-Step
 
-<!--
-Speaker Notes:
-Several GNN architectures have been developed, each with unique approaches to aggregating and updating node information. PyTorch Geometric simplifies implementing these models.
--->
-
-
-# 🧠 How Do Graph Neural Networks Work?
-
-A GNN learns a **representation for each node** based on:
-- Its own features
-- Its neighbors’ features
-
-This is done through a process called **Message Passing**
-
-
-<!-- # 🔄 Message Passing – Step-by-Step 1/2
-
-### 1️⃣ Each Node Starts With a Feature Vector  
-Usually denoted as $( h_v^{(0)} )$
-
-```python
-# Example: Node feature matrix
-x = torch.tensor([
-    [1.0, 0.5],  # Node 0
-    [0.3, 1.2],  # Node 1
-    ...
-])
-``` 
--->
-
-# 🔄 Message Passing – Step-by-Step
-
-### 2️⃣ At Each Layer:
+##### 2️⃣ At Each Layer:
 - A node gathers messages from neighbors
 - Aggregates them (e.g. sum, mean)
 - Updates its own feature using a neural net
@@ -485,6 +465,41 @@ After 2 GCN layers:
 - Fraudsters tend to connect with other fraudsters — GNN learns that!
 
 🧠 Now you can classify nodes using a final MLP or softmax layer. -->
+
+
+
+## 📚 Popular GNN Architectures
+
+![bg right:56%](./imgs/brain.webp)
+- **GCN** (Graph Convolutional Network)  
+- **GAT** (Graph Attention Network)  
+- **GraphSAGE**  
+- **GIN** (Graph Isomorphism Network)
+- ...
+
+Libraries like **PyTorch Geometric** make these easy to use.
+
+
+
+<!--
+Speaker Notes:
+Several GNN architectures have been developed, each with unique approaches to aggregating and updating node information. PyTorch Geometric simplifies implementing these models.
+
+🧠 GNN Architectures – Quick Overview
+
+• GCN (Graph Convolutional Network):  
+  Works like CNNs but on graphs. Each node averages features from its neighbors and passes them through a neural net. Simple and effective for graphs where connected nodes are similar.
+
+• GraphSAGE (Graph Sample and Aggregate):  
+  Learns how to aggregate neighbor features using mean, LSTM, or pooling. Supports inductive learning, so it can generalize to unseen nodes and graphs.
+
+• GAT (Graph Attention Network):  
+  Uses attention mechanisms to let each node weigh its neighbors differently. Great when some neighbors are more important than others.
+
+• GIN (Graph Isomorphism Network):  
+  A powerful model that uses MLPs to distinguish between different graph structures. It’s as expressive as possible, capable of capturing subtle structural differences.
+
+-->
 
 
 # 🔁 Recap: GNNs in a Nutshell
@@ -537,11 +552,6 @@ class GCN(torch.nn.Module):
         x = self.conv2(x, edge_index)
         return F.log_softmax(x, dim=1)
 ```
-
-<!--
-Speaker Notes:
-Let's implement a simple Graph Convolutional Network using the Karate Club dataset, which represents social interactions in a karate club.
--->
 
 
 ## 🏋️ Train the GNN
@@ -622,39 +632,28 @@ A benchmark citation network used for node classification and graph learning tas
 - Used in benchmarks for: GCN, GAT, GraphSAGE, etc.
 
 
-<!-- ## ⚠️ Real-World Use Case: Fraud detection
+## 🗳️ Results
 
-Fraud networks often form complex **graph topologies**.  
-Examples:
-
-- Fraud rings  
-- Transaction laundering  
-- Identity theft patterns
-
-A GNN can learn suspicious **structural patterns** better than traditional ML.
+ > |          | Training time | Accuracy | Precision | Recall | F1    | 
+ > |----------|---------------|----------|-----------|--------|-------|
+ > | **GBC**  |   ?????        | ?????    | ?????  | ????? | ?????
+ > | **GCN**  |   ?????      |  ?????   |  ?????   | ????? |  ????? 
 
 
-## 📂 Dataset: Elliptic Bitcoin Graph
+ ## 🗳️ Results
 
-- Nodes = Bitcoin addresses  
-- Edges = Transactions  
-- Features = temporal and transaction features
-- Label: `fraud` (1) or `legit` (0), $\approx 23\%$ of data is labeled, imbalance ratio 9:1
-- [Available on Kaggle](https://www.kaggle.com/ellipticco/elliptic-data-set)
- -->
-
-<!--
-Speaker Notes:
-The Elliptic dataset provides a real-world example of transaction data in the Bitcoin network, labeled for fraudulent and legitimate activities.
--->
+ > |          | Training time | Accuracy | Precision | Recall | F1    | 
+ > |----------|---------------|----------|-----------|--------|-------|
+ > | **GBC**  |   218 min         | ?????    | ?????  | ????? | ?????
+ > | **GCN**  |   27.8 s      |  ?????   |  ?????   | ????? |  ????? 
 
 
 ## 🗳️ Results
 
- > |          | Training time | Accuracy | Precision | Recall | F1    | AUROC (OvR)
- > |----------|---------------|----------|-----------|--------|-------|------------
- > | **GBC**  | 218 min       | 0.543    | 0.554     | 0.543  | 0.542 | 0.904
- > | **GCN**  | 27.8 s        | 0.722    | 0.722     | 0.723  | 0.722 | 0.985
+ > |          | Training time | Accuracy | Precision | Recall | F1    | 
+ > |----------|---------------|----------|-----------|--------|-------|
+ > | **GBC**  | 218 min       | 0.543    | 0.554     | 0.543  | 0.542 |
+ > | **GCN**  | 27.8 s        | 0.722    | 0.722     | 0.723  | 0.722 
 
 
 <!-- slide: title -->
